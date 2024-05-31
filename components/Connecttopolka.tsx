@@ -27,7 +27,7 @@ export const Connecttopolka = () => {
   const handleConnect = () => {
     setState({ ...initialExtensionState, loading: true });
 
-    web3Enable('polkadot-extension-dapp-example')
+    web3Enable('share-files-on-polkadot')
       .then((injectedExtensions) => {
         if (!injectedExtensions.length) {
           return Promise.reject(new Error('NO_INJECTED_EXTENSIONS'));

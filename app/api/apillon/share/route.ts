@@ -13,6 +13,8 @@ interface SharedFile {
 
 export async function POST(req: NextRequest, res: Response) {
   const data = await req.formData();
+
+  console.log(data,"data")
   const sharedBy = data.get("sharedBy");
   const sharedWith = data.get("sharedWith");
   const fileUuid = data.get("fileUuid");

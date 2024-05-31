@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 import { Tabs, Tab } from "@nextui-org/tabs";
@@ -16,6 +16,7 @@ import {
 import MyFilesTable from "@/components/myFilesTable";
 import SharedFilesTable from "@/components/sharedFilesTable";
 import DragAndDrop from "@/components/dragAndDrop";
+import { web3Accounts, web3Enable } from "@polkadot/extension-dapp";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -25,9 +26,19 @@ export default function DashboardPage() {
 
   const [uploading, setUploading] = useState(false);
 
-  if (!isConnected) {
-    router.push("/");
-  }
+  const [acc, setAcc] = useState("");
+  
+  console.log(acc,"acc")
+
+  useEffect(() => {
+    const getAccounts = async () => {
+      const allInjected = await web3Enable('my cool dapp');
+      const allAccounts = await web3Accounts();
+      setAcc(allAccounts[0].address);
+    };
+
+    getAccounts();
+  }, []);
 
   return (
     <>
@@ -48,7 +59,7 @@ export default function DashboardPage() {
                   <>
                     <p>Please select your file to upload.</p>
                     <DragAndDrop
-                      walletAddress={address as string}
+                      walletAddress={acc as string}
                       setUploading={setUploading}
                     />
                   </>
@@ -68,7 +79,7 @@ export default function DashboardPage() {
       <div className="flex w-full flex-col justify-end">
         <Tabs aria-label="Options">
           <Tab key="my_files" title="My Files">
-            <MyFilesTable walletAddress={address as string} />
+            <MyFilesTable walletAddress={acc as string} />
           </Tab>
           <Tab key="shared_with_me" title="Shared with me">
             <SharedFilesTable />

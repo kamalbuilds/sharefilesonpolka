@@ -10,18 +10,33 @@ import { GithubIcon } from "@/components/icons";
 import { ConnectKitButton } from "connectkit";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { web3Accounts, web3Enable, web3FromSource } from '@polkadot/extension-dapp';
 
 export default function Home() {
   const router = useRouter();
   const { isConnected } = useAccount();
+  const [acc, setAcc] = useState("");
+  console.log(acc,"acc")
 
   useEffect(() => {
-    if (isConnected) {
+    const getAccounts = async () => {
+      const allInjected = await web3Enable('my cool dapp');
+      const allAccounts = await web3Accounts();
+      setAcc(allAccounts[0].address);
+    };
+
+    getAccounts();
+  }, []);
+
+  useEffect(() => {
+    if (isConnected ) {
+      router.push("/dashboard");
+    } else if(acc) {
       router.push("/dashboard");
     }
-  }, [isConnected]);
+  }, [isConnected, acc, router]);
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">

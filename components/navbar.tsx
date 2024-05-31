@@ -24,7 +24,6 @@ import {
   SearchIcon,
 } from "@/components/icons";
 import Logo from "@/public/apillon.png";
-import { ConnectKitButton } from "connectkit";
 import Image from "next/image";
 
 import dynamic from "next/dynamic";
@@ -79,9 +78,6 @@ export const Navbar = () => {
             <GithubIcon className="text-default-500" />
           </Link> 
           <ThemeSwitch />
-        </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <ConnectKitButton />
         </NavbarItem>
 
         <NavbarItem className="hidden md:flex">

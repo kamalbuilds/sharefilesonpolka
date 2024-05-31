@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { isAddress } from "viem";
 import { useAccount } from "wagmi";
 import { SuccessIcon } from "./icons";
+import { web3Accounts, web3Enable } from "@polkadot/extension-dapp";
 
 const columns = [
   {
@@ -56,11 +57,11 @@ export default function MyFilesTable({ walletAddress }: any) {
 
   async function handleShare() {
     // validate eth
-    if (isAddress(wallet)) {
+
       setSharing(true);
 
       const formData = new FormData();
-      formData.append("sharedBy", address as string);
+      formData.append("sharedBy", acc as string);
       formData.append("sharedWith", wallet);
       formData.append("fileUuid", file.file_uuid);
 
@@ -84,7 +85,6 @@ export default function MyFilesTable({ walletAddress }: any) {
         console.error("Error sharing file:", error);
         setSharing(false);
       }
-    }
   }
 
   const readFiles = async () => {
@@ -134,6 +134,22 @@ export default function MyFilesTable({ walletAddress }: any) {
     }
   };
 
+  
+  const [acc, setAcc] = useState("");
+  
+  console.log(acc,"acc")
+
+  useEffect(() => {
+    const getAccounts = async () => {
+      const allInjected = await web3Enable('my cool dapp');
+      const allAccounts = await web3Accounts();
+      setAcc(allAccounts[0].address);
+    };
+
+    getAccounts();
+  }, []);
+
+
   return (
     <>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -176,7 +192,7 @@ export default function MyFilesTable({ walletAddress }: any) {
                             <Button
                               color="secondary"
                               onClick={handleShare}
-                              isDisabled={!isAddress(wallet)}
+                              // isDisabled={!isAddress(wallet)}
                             >
                               Share
                             </Button>
