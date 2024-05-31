@@ -9,9 +9,8 @@ import {
   getKeyValue,
   Spinner,
 } from "@nextui-org/react";
+import { web3Accounts, web3Enable } from "@polkadot/extension-dapp";
 import { useEffect, useState } from "react";
-
-import { useAccount } from "wagmi";
 
 const columns = [
   {
@@ -33,7 +32,22 @@ const columns = [
 ];
 
 export default function SharedFilesTable() {
-  const { address } = useAccount();
+
+  
+  const [acc, setAcc] = useState("");
+  console.log(acc,"acc")
+
+  useEffect(() => {
+    const getAccounts = async () => {
+      const allInjected = await web3Enable('filesharing dapp');
+      const allAccounts = await web3Accounts();
+      setAcc(allAccounts[0].address);
+    };
+
+    getAccounts();
+  }, []);
+
+
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<any>([]); // [] as initial value
   useEffect(() => {
@@ -43,7 +57,7 @@ export default function SharedFilesTable() {
 
   const readSharedFiles = async () => {
     const formData = new FormData();
-    formData.append("walletAddress", address as string);
+    formData.append("walletAddress", acc as string);
 
     try {
       const response = await fetch("/api/apillon/read/shared-files", {

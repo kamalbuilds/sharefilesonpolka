@@ -17,8 +17,6 @@ import {
   Spinner,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { isAddress } from "viem";
-import { useAccount } from "wagmi";
 import { SuccessIcon } from "./icons";
 import { web3Accounts, web3Enable } from "@polkadot/extension-dapp";
 
@@ -42,7 +40,6 @@ const columns = [
 ];
 
 export default function MyFilesTable({ walletAddress }: any) {
-  const { address } = useAccount();
   const [loading, setLoading] = useState(false);
   const [sharing, setSharing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);

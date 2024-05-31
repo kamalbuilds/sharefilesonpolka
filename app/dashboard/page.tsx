@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAccount } from "wagmi";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import { Button } from "@nextui-org/button";
 import {
@@ -20,7 +19,6 @@ import { web3Accounts, web3Enable } from "@polkadot/extension-dapp";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { isConnected, address } = useAccount();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
