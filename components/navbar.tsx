@@ -27,7 +27,7 @@ import Logo from "@/public/apillon.png";
 import { ConnectKitButton } from "connectkit";
 import Image from "next/image";
 
-import { Connecttopolka } from "./Connecttopolka";
+import dynamic from "next/dynamic";
 
 export const Navbar = () => {
   const searchInput = (
@@ -50,6 +50,11 @@ export const Navbar = () => {
       type="search"
     />
   );
+
+  const ConnecttoPolka = dynamic(() => import('../components/Connecttopolka').then(m => m.Connecttopolka), {
+    ssr: false,
+  });
+
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
@@ -80,7 +85,7 @@ export const Navbar = () => {
         </NavbarItem>
 
         <NavbarItem className="hidden md:flex">
-          <Connecttopolka />
+          <ConnecttoPolka />
         </NavbarItem>
       </NavbarContent>
 
