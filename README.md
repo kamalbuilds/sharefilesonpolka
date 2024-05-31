@@ -1,36 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ShareFilesonPolkadot
 
-## Getting Started
+- Built using Apillon SDK
 
-First, run the development server:
+* Application Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Wallet Integration: Users can seamlessly connect their Polkadot wallets to our decentralized application (dApp), ensuring a secure and personalized experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. File Upload and Management: After connecting their wallet, users can effortlessly upload any type of file. These files are conveniently organized and can be accessed under the "My Files" tab, providing a centralized location for all user uploads.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. File Sharing: Users have the ability to share their uploaded files with other Polkadot wallet addresses. This feature, accessible via the "Share" tab, allows for secure and efficient file distribution between users.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Access Shared Files: The "View Shared Files" tab provides users with a comprehensive overview of all the files shared with them by other users. This feature ensures that shared content is easily accessible and well-organized within the dApp.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Demo Video
